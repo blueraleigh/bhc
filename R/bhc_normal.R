@@ -47,3 +47,52 @@ bhc.normal = function(
 
     return (obj)
 }
+
+
+#' Bayesian hierarchical clustering for normal variates
+#'
+#' @param x A numeric matrix with rows representing observations
+#' to cluster.
+#' @param alpha Dirichlet process hyperparameter.
+#' @details Optimizes the prior sum of squares matrix while holding
+#' the prior mean fixed to the observed mean. All other hyperparameters
+#' are also held fixed. Notably, the Dirichlet process parameter
+#' is held fixed to the value supplied in the argument.
+fit.bhc.normal = function(x, alpha=1) {
+    stopifnot(is.matrix(x) && is.numeric(x))
+    stopifnot(is.numeric(alpha) && alpha[1L] > 0)
+
+    nu = ncol(x)
+    kappa = 1
+    mu = colMeans(x, na.rm=TRUE)
+    lambda = diag(var(x, na.rm=TRUE))
+
+    storage.mode(x) = "double"
+    storage.mode(alpha) = "double"
+    storage.mode(nu) = "double"
+    storage.mode(kappa) = "double"
+    storage.mode(mu) = "double"
+    storage.mode(lambda) = "double"
+
+    y = t(x)
+
+    obj = NULL
+
+    lik = function(pars) {
+        obj <<- .Call(bhc_normal
+        , y
+        , alpha
+        , nu
+        , kappa
+        , mu
+        , diag(exp(pars)))
+
+        obj$lnL
+    }
+
+    fit = optim(log(lambda), lik, control=list(fnscale=-1))
+
+    obj$labels = rownames(x)
+
+    return (obj)
+}
