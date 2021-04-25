@@ -1,0 +1,14 @@
+Package: bhc
+Type: Package
+Title: Bayesian Hierarchical Clustering
+Version: 1.0
+Date: 2021-04-06
+Author: Michael C. Grundler
+Maintainer: Michael C. Grundler <mcgrundler@gmail.com>
+Description: Bayesian Hierarchical Clustering is a greedy agglomerative
+  clustering method that approximates a Dirichlet process mixture model.
+  Package bhc can be used to run the Bayesian Hierarchical Clustering
+  algorithm on normally distributed and multinomially distributed data.
+NeedsCompilation: yes
+License: CC0
+RoxygenNote: 7.1.1
