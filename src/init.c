@@ -9,6 +9,7 @@
 static const R_CallMethodDef CallEntries[] = {
     CALLDEF(bhc_normal, 6),
     CALLDEF(bhc_multinomial, 3),
+    CALLDEF(bhc_poisson, 5),
     {NULL, NULL, 0}
 };
 

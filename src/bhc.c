@@ -12,6 +12,7 @@ static struct cluster *merge_start(int k, struct cluster *a, struct cluster *b,
     // temporarily link left and right clusters
     lf->datum_last->next = rt->datum_first;
 
+    // merge function malloc's c
     merge(k, lf, rt, h, &c);
 
     tmp = c->log_alpha + lgammafn(c->n);

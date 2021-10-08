@@ -6,5 +6,6 @@
 
 SEXP bhc_normal(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 SEXP bhc_multinomial(SEXP, SEXP, SEXP);
+SEXP bhc_poisson(SEXP, SEXP, SEXP, SEXP, SEXP);
 
 #endif
