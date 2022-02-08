@@ -24,7 +24,7 @@ static struct cluster *merge_start(int k, struct cluster *a, struct cluster *b,
     c->log_pk = -log1p(exp(a->log_dk + b->log_dk - tmp));
 
     if (c->log_pk == 0)
-        error("loss of precision in probability calculation");
+        warning("loss of precision in probability calculation");
 
     c->log_h = ml(c, h);
 
